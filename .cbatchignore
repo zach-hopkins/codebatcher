@@ -1,0 +1,19 @@
+# Default ignore patterns for cbatch
+codebatch.md
+.gitignore
+.env
+cbatch.ini
+.cbatchignore
+*.pyc
+__pycache__/
+*.swp
+.DS_Store
+node_modules/
+venv/
+env/
+*.log
+data/
+temp/
+tmp/
+build/
+dist/
