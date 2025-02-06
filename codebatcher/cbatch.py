@@ -143,6 +143,7 @@ def read_gitignore_patterns(ignore_file=CBATCH_IGNORE_FILE):
 def is_file_ignored(file_path, ignore_patterns):
     """
     Checks if a file path is ignored based on the provided patterns.
+    Handles both file and directory patterns.
 
     Args:
         file_path (str): Path to the file.
@@ -152,7 +153,16 @@ def is_file_ignored(file_path, ignore_patterns):
         bool: True if the file is ignored, False otherwise.
     """
     for pattern in ignore_patterns:
-        if fnmatch.fnmatch(file_path, pattern):
+        # Handle directory patterns (ending with /)
+        if pattern.endswith("/"):
+            # Remove trailing slash for matching
+            dir_pattern = pattern[:-1]
+            # Check if this directory pattern appears anywhere in the path
+            path_parts = file_path.split(os.sep)
+            if any(fnmatch.fnmatch(part, dir_pattern) for part in path_parts):
+                return True
+        # Handle regular file patterns
+        elif fnmatch.fnmatch(file_path, pattern):
             return True
     return False
 
