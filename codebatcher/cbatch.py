@@ -10,11 +10,13 @@ DEFAULT_OUTPUT_FILE = "codebatch.md"
 
 DEFAULT_IGNORE_PATTERNS = [
     "codebatch.md",
+    "README.md",
     ".gitignore",
     ".git/",
     "*.lock",
     ".env",
     ".env.*",
+    "package-lock.json",
     CBATCH_CONFIG_FILE,
     CBATCH_IGNORE_FILE,
     "*.pyc",
@@ -252,6 +254,36 @@ def output_codebase_to_structured_file(
     output_content += "## General Info ##\n\n"
     for key, value in general_info.items():
         output_content += f"**{key.replace('_', ' ').title()}**: {value}\n"
+    output_content += "\n"
+
+    # Routes Section (New)
+    output_content += "## Routes ##\n\n"
+    route_info = []
+
+    # First pass to collect all routes and their token counts
+    for root, _, files in os.walk(codebase_path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            relative_path = os.path.relpath(file_path, codebase_path)
+
+            if not is_file_ignored(relative_path, ignore_patterns):
+                try:
+                    with open(file_path, "r") as infile:
+                        content = infile.read()
+                        token_count = estimate_tokens(content)
+                        route_info.append(
+                            {"path": relative_path, "tokens": token_count}
+                        )
+                except Exception as e:
+                    print(f"Error reading file for token count: {file_path} - {e}")
+
+    # Sort routes by token count (descending)
+    route_info.sort(key=lambda x: x["tokens"], reverse=True)
+
+    # Add routes with token counts to output
+    output_content += "Files sorted by token count (largest first):\n\n"
+    for route in route_info:
+        output_content += f"`{route['path']}` ({route['tokens']} tokens)\n"
     output_content += "\n"
 
     # Files Section
