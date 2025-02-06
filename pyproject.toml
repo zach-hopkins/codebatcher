@@ -1,6 +1,6 @@
 [project]
 name = "codebatcher"
-version = "0.1.3"
+version = "0.1.4"
 description = "Codebase Batcher (cbatch) - CLI tool to output codebase to structured file for AI context."
 authors = [
     {name = "Zach",email = "zh93@nau.edu"}

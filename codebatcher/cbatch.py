@@ -17,6 +17,34 @@ DEFAULT_IGNORE_PATTERNS = [
     ".env",
     ".env.*",
     "package-lock.json",
+    "*.png",
+    "*.jpg",
+    "*.ico",
+    "*.mp3",
+    "*.ttf",
+    "*.jpeg",
+    "*.mp4",
+    "*.mkv",
+    "*.webm",
+    "*.gif",
+    "*.zip",
+    "*.gz",
+    "*.tar",
+    "*.rar",
+    "*.7z",
+    "*.pdf",
+    ".prettierrc",
+    ".eslintrc",
+    ".eslintignore",
+    ".stylelintrc",
+    ".stylelintignore",
+    ".npmrc",
+    ".babelrc",
+    ".browserslistrc",
+    ".dockerignore",
+    ".editorconfig",
+    ".git*",
+    "eslint*",
     CBATCH_CONFIG_FILE,
     CBATCH_IGNORE_FILE,
     "*.pyc",
@@ -68,6 +96,7 @@ DEFAULT_IGNORE_PATTERNS = [
     ".turbo/",  # Turborepo
     ".yarn/",  # Yarn
     "yarn-error.log",  # Yarn errors
+    ".yarn.lock",  # Yarn lockfile
     ".pnpm-store/",  # pnpm
     ##
     # IDE and Editor files
