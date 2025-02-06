@@ -14,6 +14,7 @@ DEFAULT_IGNORE_PATTERNS = [
     ".git/",
     "*.lock",
     ".env",
+    ".env.*",
     CBATCH_CONFIG_FILE,
     CBATCH_IGNORE_FILE,
     "*.pyc",
@@ -29,6 +30,53 @@ DEFAULT_IGNORE_PATTERNS = [
     "tmp/",  # Common temporary directories
     "build/",  # Build directories
     "dist/",  # Distribution packages
+    "dist-*/",  # Distribution variations
+    ##
+    # Certs, keys, dbs, and other sensitive files
+    ##
+    "*.pem",
+    "*.key",
+    "*.csr",
+    "*.crt",
+    "*.cer",
+    "*.pfx",
+    "*.p12",
+    "*.sqlite",
+    "*.db",
+    "*.log",
+    ##
+    # Framework-specific build/cache directories
+    ##
+    ".svelte-kit/",  # SvelteKit
+    ".next/",  # Next.js
+    ".nuxt/",  # Nuxt.js
+    ".output/",  # Nuxt.js output
+    ".vitepress/",  # VitePress
+    ".astro/",  # Astro
+    ".cache/",  # Gatsby, general cache
+    "out/",  # Next.js, general output
+    ".angular/",  # Angular
+    ".remix/",  # Remix
+    ##
+    # Bundler/Build tool outputs
+    ##
+    ".parcel-cache/",  # Parcel
+    ".webpack/",  # Webpack
+    ".rollup.cache/",  # Rollup
+    ".turbo/",  # Turborepo
+    ".yarn/",  # Yarn
+    "yarn-error.log",  # Yarn errors
+    ".pnpm-store/",  # pnpm
+    ##
+    # IDE and Editor files
+    ##
+    ".idea/",  # JetBrains IDEs
+    ".vscode/",  # VS Code
+    "*.sublime-*",  # Sublime Text
+    ".settings/",  # Eclipse
+    ".project",  # Eclipse
+    ".classpath",  # Eclipse
+    "*.iml",  # IntelliJ IDEA modules
 ]
 
 
