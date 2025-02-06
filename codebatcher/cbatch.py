@@ -1,29 +1,4 @@
-# Instructions #
-
-This file represents the entire codebase I am working on, it is structured in markdown syntax for readability and to explore codes and my routes relatively easily.
-
-## General Info ##
-
-**Codebase Type**: FastAPI backend in Python
-**Deployment Location**: Fly.io machine
-**General Description**: AI Chatbot backend
-**Execution Command**: 
-
-## Files ##
-
-### `cool.py` ###
-```
-# write some example script
-
-i = [range(10)]
-
-for j in i:
-    print(j)
-
-```
-
-### `cbatch.py` ###
-```
+#!/usr/bin/env python3
 import os
 import argparse
 import configparser
@@ -36,6 +11,8 @@ DEFAULT_OUTPUT_FILE = "codebatch.md"
 DEFAULT_IGNORE_PATTERNS = [
     "codebatch.md",
     ".gitignore",
+    ".git/",
+    "*.lock",
     ".env",
     CBATCH_CONFIG_FILE,
     CBATCH_IGNORE_FILE,
@@ -111,23 +88,30 @@ def init_config():
     config["General"] = {}  # Initialize General section
     config["Summary"] = {}  # Initialize Summary section - will be updated later
 
-    codebase_type = (
-        input(
-            "Enter Codebase Type (e.g., FastAPI backend in Python) [FastAPI backend in Python]: "
+    set_general_info_prompt = input(
+        "Would you like to set general project information to assist AI? (optional) (y/N): "
+    )
+    set_general_info = set_general_info_prompt.lower() in ("y", "yes")
+
+    if set_general_info:
+        codebase_type = (
+            input("Enter Codebase Type (e.g., FastAPI backend, React frontend): ") or ""
         )
-        or "FastAPI backend in Python"
-    )
-    deployment_location = (
-        input("Enter Deployment Location (e.g., Fly.io machine) [Fly.io machine]: ")
-        or "Fly.io machine"
-    )
-    general_description = (
-        input(
-            "Enter General Description (e.g., AI Chatbot backend) [AI Chatbot backend]: "
+        deployment_location = (
+            input("Enter Deployment Location (e.g., Vercel, AWS): ") or ""
         )
-        or "AI Chatbot backend"
-    )
-    execution_command = input("Enter Execution Command (e.g., granian ...): ") or ""
+        general_description = (
+            input("Enter General Description (e.g., AI Chatbot backend): ") or ""
+        )
+        execution_command = (
+            input("Enter Execution Command (e.g., npm run dev, uvicorn ...): ") or ""
+        )
+    else:
+        print("Skipping general project information setup.")
+        codebase_type = ""
+        deployment_location = ""
+        general_description = ""
+        execution_command = ""
 
     config["General"]["codebase_type"] = codebase_type
     config["General"]["deployment_location"] = deployment_location
@@ -274,7 +258,7 @@ def tokens_command():
         )
 
 
-if __name__ == "__main__":
+def main():  # Define the main function
     parser = argparse.ArgumentParser(
         description="Codebatcher (cbatch) - CLI tool to output codebase to structured file for AI context."
     )
@@ -330,14 +314,6 @@ if __name__ == "__main__":
     else:
         parser.print_help()
 
-```
 
-### `routes/example.py` ###
-```
-i = range(10)
-
-for j in i:
-    print(j)
-
-```
-
+if __name__ == "__main__":
+    main()  # Call the main function when cbatch.py is run directly or via 'cbatch' command

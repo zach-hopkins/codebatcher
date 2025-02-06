@@ -1,0 +1,25 @@
+[project]
+name = "codebatcher"
+version = "0.1.0"
+description = "Codebase Batcher (cbatch) - CLI tool to output codebase to structured file for AI context."
+authors = [
+    {name = "Zach",email = "zh93@nau.edu"}
+]
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+]
+
+[tool.poetry.dependencies]
+python = ">=3.7"  # Minimum Python version
+configparser = "^5.3" # If you want to explicitly list configparser (though it's standard library)
+
+[tool.poetry]
+packages = [{include = "codebatcher"}]
+
+[tool.poetry.scripts]
+cbatch = "codebatcher.cbatch:main" # Corrected script path for 'codebatcher' directory
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
