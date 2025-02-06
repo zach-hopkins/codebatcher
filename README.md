@@ -2,6 +2,31 @@
 
 A CLI tool that formats your codebase into a structured markdown file, making it easier to provide context to AI tools like ChatGPT or Claude.
 
+## Install
+
+```bash
+pip install codebatcher
+```
+
+## Use
+
+1. Navigate to your project directory:
+```bash
+cd your-project
+```
+
+2. Initialize cbatch configuration:
+```bash
+cbatch init
+```
+
+3. Generate the structured codebase file:
+```bash
+cbatch update
+```
+
+4. Copy generated codebatch.md into AI
+
 ## Features
 
 - 📝 Converts your entire codebase into a single, well-structured markdown file
